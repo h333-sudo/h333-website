@@ -4,6 +4,8 @@ backend:
   branch: main
   base_url: https://oauth.netlify.app
   auth_endpoint: auth
+  app_id: Ov23lizSBoFBCQwB60bo
+  auth_type: pkce
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
