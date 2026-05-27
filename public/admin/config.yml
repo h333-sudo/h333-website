@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR_USERNAME/h333-site  # 替换为你的 GitHub 用户名/仓库名
+  repo: h333-sudo/h333-website
   branch: main
   base_url: https://oauth.netlify.app
   auth_endpoint: auth
