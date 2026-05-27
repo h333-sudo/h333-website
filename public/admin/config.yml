@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: YOUR_USERNAME/h333-site  # 替换为你的 GitHub 用户名/仓库名
+  branch: main
+  base_url: https://oauth.netlify.app
+  auth_endpoint: auth
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "文章"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "摘要", name: "description", widget: "text", required: false }
+      - { label: "标签", name: "tags", widget: "list", required: false }
+      - { label: "正文", name: "body", widget: "markdown" }
+    sort: "date:desc"
+
+  - name: "pages"
+    label: "页面"
+    files:
+      - name: "about"
+        label: "关于我"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "简介", name: "intro", widget: "text" }
+          - { label: "正文", name: "body", widget: "markdown" }
+      - name: "contact"
+        label: "联系方式"
+        file: "src/content/pages/contact.md"
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "邮箱", name: "email", widget: "string" }
+          - { label: "微信", name: "wechat", widget: "string", required: false }
+          - { label: "GitHub", name: "github", widget: "string", required: false }

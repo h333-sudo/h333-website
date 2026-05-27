@@ -1,0 +1,296 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="首页" activeNav="home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-greeting animate delay-1">你好</p>
+        <h1 class="hero-title animate delay-2">我是 h333</h1>
+        <p class="hero-subtitle animate delay-3">开发者 / 设计师</p>
+        <div class="hero-actions animate delay-4">
+          <a href="/portfolio" class="btn">查看作品</a>
+          <a href="/about" class="btn btn-outline">了解更多</a>
+        </div>
+      </div>
+      <div class="hero-decoration animate delay-5">
+        <div class="deco-line"></div>
+        <div class="deco-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 精选作品 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animate">精选作品</h2>
+      <div class="works-grid">
+        <a href="/portfolio" class="work-card animate delay-1">
+          <div class="work-thumb" style="background: linear-gradient(135deg, #e8e8e3, #d4d4cf);">
+            <span class="work-number">01</span>
+          </div>
+          <h3>项目一</h3>
+          <p>Web 开发</p>
+        </a>
+        <a href="/portfolio" class="work-card animate delay-2">
+          <div class="work-thumb" style="background: linear-gradient(135deg, #d4d4cf, #c0c0bb);">
+            <span class="work-number">02</span>
+          </div>
+          <h3>项目二</h3>
+          <p>UI 设计</p>
+        </a>
+      </div>
+      <div class="works-more animate delay-3">
+        <a href="/portfolio">查看全部作品 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能概览 -->
+  <section class="section skills-preview">
+    <div class="container">
+      <h2 class="section-title animate">技能</h2>
+      <div class="skills-grid">
+        <div class="skill-item animate delay-1">
+          <span class="skill-label">前端</span>
+          <p>HTML / CSS / JavaScript</p>
+        </div>
+        <div class="skill-item animate delay-2">
+          <span class="skill-label">后端</span>
+          <p>Python / Node.js</p>
+        </div>
+        <div class="skill-item animate delay-3">
+          <span class="skill-label">设计</span>
+          <p>Figma / Photoshop</p>
+        </div>
+        <div class="skill-item animate delay-4">
+          <span class="skill-label">运维</span>
+          <p>Linux / Docker / Git</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新文章 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title animate">最新文章</h2>
+      <div class="posts-empty animate delay-1">
+        <p>暂无文章</p>
+        <span>敬请期待</span>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-greeting {
+    font-size: 1.15rem;
+    color: var(--fg-muted);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    color: var(--fg-muted);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-decoration {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .deco-line {
+    width: 1px;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--border), transparent);
+    margin: 0 auto;
+  }
+
+  .deco-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 1rem auto 0;
+  }
+
+  /* 作品网格 */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .work-card {
+    display: block;
+    color: var(--fg);
+  }
+
+  .work-card:hover {
+    color: var(--fg);
+  }
+
+  .work-thumb {
+    aspect-ratio: 16 / 10;
+    border-radius: 2px;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease);
+  }
+
+  .work-card:hover .work-thumb {
+    transform: translateY(-4px);
+  }
+
+  .work-number {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgba(26, 26, 26, 0.08);
+    line-height: 1;
+  }
+
+  .work-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .work-card p {
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+  }
+
+  .works-more {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .works-more a {
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: color 0.3s var(--ease);
+  }
+
+  .works-more a:hover {
+    color: var(--accent);
+  }
+
+  /* 技能预览 */
+  .skills-preview {
+    background: var(--bg-alt);
+    padding: 4rem 0;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-item {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .skill-label {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-item p {
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  /* 文章为空 */
+  .posts-empty {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--fg-muted);
+  }
+
+  .posts-empty p {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .posts-empty span {
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 85vh;
+    }
+
+    .hero-decoration {
+      display: none;
+    }
+
+    .works-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

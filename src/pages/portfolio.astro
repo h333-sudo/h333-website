@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  { id: '01', title: '项目一', desc: 'Web 开发', tag: '全栈', gradient: 'linear-gradient(135deg, #e8e8e3, #d4d4cf)' },
+  { id: '02', title: '项目二', desc: 'UI 设计', tag: '设计', gradient: 'linear-gradient(135deg, #d4d4cf, #c0c0bb)' },
+  { id: '03', title: '项目三', desc: '工具开发', tag: '开发', gradient: 'linear-gradient(135deg, #c0c0bb, #acacaa)' },
+  { id: '04', title: '项目四', desc: '开源项目', tag: '开源', gradient: 'linear-gradient(135deg, #acacaa, #989896)' },
+];
+---
+
+<Layout title="作品" activeNav="portfolio">
+  <section class="page-header">
+    <div class="container">
+      <h1 class="animate delay-1">作品集</h1>
+      <p class="animate delay-2">我的一些代表性作品</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="portfolio-grid">
+        {projects.map((project, i) => (
+          <a href="#" class={`portfolio-card animate delay-${i + 1}`}>
+            <div class="card-thumb" style={`background: ${project.gradient}`}>
+              <span class="card-number">{project.id}</span>
+              <span class="card-tag">{project.tag}</span>
+            </div>
+            <div class="card-info">
+              <h3>{project.title}</h3>
+              <p>{project.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .portfolio-card {
+    display: block;
+    color: var(--fg);
+  }
+
+  .portfolio-card:hover {
+    color: var(--fg);
+  }
+
+  .card-thumb {
+    aspect-ratio: 16 / 10;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .portfolio-card:hover .card-thumb {
+    transform: translateY(-6px);
+  }
+
+  .card-number {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(26, 26, 26, 0.06);
+    line-height: 1;
+  }
+
+  .card-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(250, 250, 248, 0.9);
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .card-info {
+    padding: 1.25rem 0;
+  }
+
+  .card-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .card-info p {
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

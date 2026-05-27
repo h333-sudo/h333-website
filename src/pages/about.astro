@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="关于" activeNav="about">
+  <section class="page-header">
+    <div class="container">
+      <h1 class="animate delay-1">关于我</h1>
+      <p class="animate delay-2">热爱技术与设计的创作者</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="intro animate delay-1">你好，我是 h333。</p>
+          <p class="animate delay-2">
+            一个热爱技术与设计的创作者。我相信好的技术应该是优雅且实用的，
+            好的设计应该是克制而有力的。
+          </p>
+          <p class="animate delay-3">
+            在这里，我会记录一些技术笔记、设计思考，以及偶尔的灵感碎片。
+          </p>
+        </div>
+        <div class="about-skills">
+          <h2 class="section-title animate delay-2">技能</h2>
+          <div class="skill-group animate delay-3">
+            <h3>开发</h3>
+            <div class="skill-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Python</span>
+              <span>Node.js</span>
+            </div>
+          </div>
+          <div class="skill-group animate delay-4">
+            <h3>设计</h3>
+            <div class="skill-tags">
+              <span>Figma</span>
+              <span>Photoshop</span>
+            </div>
+          </div>
+          <div class="skill-group animate delay-5">
+            <h3>运维</h3>
+            <div class="skill-tags">
+              <span>Linux</span>
+              <span>Docker</span>
+              <span>Git</span>
+              <span>Nginx</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .about-text {
+    padding-top: 0.5rem;
+  }
+
+  .intro {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    color: var(--fg-muted);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+
+  .skill-group {
+    margin-bottom: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .skill-group h3 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tags span {
+    padding: 0.35rem 0.85rem;
+    background: var(--bg-alt);
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+</style>

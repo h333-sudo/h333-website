@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  activeNav?: string;
+}
+
+const { title, description = 'h333 的个人网站 — 开发者 / 设计师', activeNav = '' } = Astro.props;
+const navItems = [
+  { href: '/', label: '首页', id: 'home' },
+  { href: '/about', label: '关于', id: 'about' },
+  { href: '/portfolio', label: '作品', id: 'portfolio' },
+  { href: '/blog', label: '文章', id: 'blog' },
+  { href: '/contact', label: '联系', id: 'contact' },
+];
+---
+
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} — h333</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">h333</a>
+        <button class="nav-toggle" aria-label="菜单" id="navToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          {navItems.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class={activeNav === item.id ? 'active' : ''}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 h333. 用 Astro 构建。</p>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      toggle?.addEventListener('click', () => {
+        links?.classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

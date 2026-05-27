@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const contacts = [
+  { label: '邮箱', value: 'your-email@example.com', icon: 'M' },
+  { label: '微信', value: 'your-wechat-id', icon: 'W' },
+  { label: 'GitHub', value: 'github.com/your-username', icon: 'G' },
+];
+---
+
+<Layout title="联系" activeNav="contact">
+  <section class="page-header">
+    <div class="container">
+      <h1 class="animate delay-1">联系我</h1>
+      <p class="animate delay-2">有任何问题或合作意向，欢迎联系</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        {contacts.map((item, i) => (
+          <div class={`contact-item animate delay-${i + 1}`}>
+            <div class="contact-icon">
+              <span>{item.icon}</span>
+            </div>
+            <span class="contact-label">{item.label}</span>
+            <span class="contact-value">{item.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .contact-item {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.4s var(--ease);
+  }
+
+  .contact-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--fg-muted);
+  }
+
+  .contact-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-value {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--fg);
+    word-break: break-all;
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

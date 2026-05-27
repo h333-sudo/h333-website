@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+}
+---
+
+<Layout title="文章" activeNav="blog">
+  <section class="page-header">
+    <div class="container">
+      <h1 class="animate delay-1">文章</h1>
+      <p class="animate delay-2">技术笔记与设计思考</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {posts.length === 0 ? (
+        <div class="posts-empty animate delay-1">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+          </div>
+          <p>暂无文章</p>
+          <span>通过 CMS 后台发布你的第一篇文章</span>
+        </div>
+      ) : (
+        <div class="posts-list">
+          {posts.map((post, i) => (
+            <a href={`/blog/${post.slug}/`} class={`post-item animate delay-${Math.min(i + 1, 6)}`}>
+              <div class="post-info">
+                <h2>{post.data.title}</h2>
+                {post.data.description && <p class="post-desc">{post.data.description}</p>}
+                <div class="post-meta">
+                  <time>{formatDate(post.data.date)}</time>
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="post-tags">
+                      {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <span class="post-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    transition: all 0.3s var(--ease);
+  }
+
+  .post-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  .post-item:hover {
+    color: var(--fg);
+    padding-left: 0.5rem;
+  }
+
+  .post-info h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  .post-desc {
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    padding: 0.15rem 0.5rem;
+    background: var(--bg-alt);
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+  }
+
+  .post-arrow {
+    font-size: 1.25rem;
+    color: var(--fg-muted);
+    transition: all 0.3s var(--ease);
+    flex-shrink: 0;
+    margin-left: 2rem;
+  }
+
+  .post-item:hover .post-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .posts-empty {
+    text-align: center;
+    padding: 6rem 0;
+  }
+
+  .empty-icon {
+    color: var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .posts-empty p {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .posts-empty span {
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+</style>
